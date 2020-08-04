@@ -32,7 +32,7 @@ namespace charting_webapp.Pages
             var httpClient = new HttpClient();
             var responseAsString = await httpClient.GetStringAsync(_apiuri);
             var objects = JsonConvert.DeserializeObject<List<Occupancy>>(responseAsString);
-            return objects.Select(x => x.NumberOfPeople).ToList();
+            return objects.Select(x => x.numberofpeople).ToList();
                 //return new List<int> { 12, 19, 3, 5, 2, 3, 5, 5, 5, 1, 2, 2, 1, 0, 0, 0, 1, 3, 5, 6, 8, 7, 9, 12 }.ToArray();
         }
     }
