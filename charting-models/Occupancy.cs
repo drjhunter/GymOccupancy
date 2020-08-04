@@ -1,7 +1,7 @@
 using System;
 using System.Text.Json.Serialization;
 
-namespace charting_webapi
+namespace charting_models
 {
     public class Occupancy
     {
