@@ -6,10 +6,11 @@ namespace charting_webapi
     public class Occupancy
     {
         [JsonPropertyName("gymid")]
-        public string GymId { get; set; }
-        public int NumberOfPeople { get; set; }
+        public string gymid { get; set; }
+        public int numberofpeople { get; set; }
 
-        public DateTime Date { get; set; }
+        public DateTime date { get; set; }
+        public string id { get; set; }
 
     }
 }

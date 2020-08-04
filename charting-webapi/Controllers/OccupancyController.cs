@@ -19,7 +19,7 @@ namespace charting_webapi.Controllers
         public OccupancyController(ILogger<OccupancyController> logger, IConnectionFactory<Occupancy> connectionFactory)
         {
             _logger = logger;
-            _connection = connectionFactory.GetConnection();
+            _connection = connectionFactory.GetConnection<Occupancy>().Result;
         }
 
         [HttpGet]
@@ -32,7 +32,7 @@ namespace charting_webapi.Controllers
             //     TemperatureC = rng.Next(-20, 55),
             //     Summary = Summaries[rng.Next(Summaries.Length)]
             // })
-            return await _connection.GetItems();
+            return _connection.GetItems("000001").Result;
 
             // var occs = new List<Occupancy> {
             //     new Occupancy  { GymId = "000005", NumberOfPeople = 3},

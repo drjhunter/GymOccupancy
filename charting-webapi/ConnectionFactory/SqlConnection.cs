@@ -1,6 +1,9 @@
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
 public class SqlConnection<T> : IConnection<T>
 {
-    public System.Threading.Tasks.Task<System.Collections.Generic.IEnumerable<T>> GetItems()
+    public Task<IEnumerable<T>> GetItems(string gymId)
     {
         throw new System.NotImplementedException();
     }
