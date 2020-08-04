@@ -12,13 +12,14 @@ pool:
 steps:
 - task: DotNetCoreCLI@2
   inputs:
+    command: 'restore'
+    projects: 'charting-webapp/charting-webapp.csproj'
+    feedsToUse: 'config'
+    nugetConfigPath: 'charting-webapp/NuGet.config'
+- task: DotNetCoreCLI@2
+  inputs:
     command: 'build'
     projects: 'charting-webapp/charting-webapp.csproj'
-- task: DotNetCoreCLI@2
-
-  inputs:
-    command: 'publish'
-    publishWebProjects: true
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
@@ -38,4 +39,5 @@ steps:
     WebAppName: 'chartin-webapp'
     packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
     AppSettings: '-PROJECT charting-webapp/charting-webapp.csproj'
+
 
