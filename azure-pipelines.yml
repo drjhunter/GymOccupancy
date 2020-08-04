@@ -14,5 +14,9 @@ steps:
   inputs:
     command: 'build'
     projects: 'charting-webapp/charting-webapp.csproj'
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'publish'
+    publishWebProjects: true
 
   
