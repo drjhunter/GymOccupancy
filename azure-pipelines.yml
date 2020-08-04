@@ -20,11 +20,14 @@ steps:
   inputs:
     command: 'build'
     projects: 'charting-webapp/charting-webapp.csproj'
+- task: DotNetCoreCLI@2
+  displayName: 'dotnet build'
+  inputs:
+    projects: 'charting-webapp/charting-webapp.csproj'    
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'drop'
-    publishLocation: 'Container'
 - task: DownloadBuildArtifacts@0
   inputs:
     buildType: 'current'
