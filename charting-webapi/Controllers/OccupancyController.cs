@@ -14,10 +14,12 @@ namespace charting_webapi.Controllers
     {
 
         private readonly ILogger<OccupancyController> _logger;
+        private readonly IConnection<Occupancy> _connection;
 
-        public OccupancyController(ILogger<OccupancyController> logger)
+        public OccupancyController(ILogger<OccupancyController> logger, IConnectionFactory<Occupancy> connectionFactory)
         {
             _logger = logger;
+            _connection = connectionFactory.GetConnection();
         }
 
         [HttpGet]
@@ -30,7 +32,7 @@ namespace charting_webapi.Controllers
             //     TemperatureC = rng.Next(-20, 55),
             //     Summary = Summaries[rng.Next(Summaries.Length)]
             // })
-            return await GetFromStorage();
+            return await _connection.GetItems();
 
             // var occs = new List<Occupancy> {
             //     new Occupancy  { GymId = "000005", NumberOfPeople = 3},
@@ -39,31 +41,6 @@ namespace charting_webapi.Controllers
             // return occs.ToArray();
         }
 
-        private async Task<IEnumerable<Occupancy>> GetFromStorage()
-        {
-            // Initialize a new instance of CosmosClient using the built-in account endpoint and key parameters
-            var endpoint = "https://charting-stor.documents.azure.com:443/";
-            var key = "6rcotecXI2m7VpruVbL0F9di9kcpa169LLHZ27sycWkAJuPBsHwnndIOzYA6PbMPeYoWUCi7alGLopcmgVxMuQ==";
-            var databaseName = "gymoccupancydb";
-            var containerName = "hourlyoccupancy";
-
-            var sqlQueryText = "SELECT * FROM o WHERE o.gymid='000001'";
-            CosmosClient cosmosClient = new CosmosClient(endpoint, key);
-            var container = cosmosClient.GetContainer(databaseName, containerName);
-            QueryDefinition queryDefinition = new QueryDefinition(sqlQueryText);
-            var occupancies = new List<Occupancy>();
-            var test = container.GetItemQueryIterator<Occupancy>(queryDefinition);
-
-            var queryResultSetIterator = container.GetItemQueryIterator<Occupancy>(queryDefinition);
-            while (queryResultSetIterator.HasMoreResults)
-            {
-                FeedResponse<Occupancy> currentResultSet = await queryResultSetIterator.ReadNextAsync();
-                foreach (Occupancy occ in currentResultSet)
-                {
-                    occupancies.Add(occ);
-                }
-            }
-            return occupancies;
-        }
+        
     }
 }

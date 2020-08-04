@@ -26,6 +26,7 @@ namespace charting_webapi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddTransient<IConnectionFactory<Occupancy>, ConnectionFactory<Occupancy>>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
