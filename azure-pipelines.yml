@@ -20,6 +20,7 @@ steps:
   inputs:
     command: 'build'
     projects: 'charting-webapp/charting-webapp.csproj'
+    zipAfterPublish: true
 - task: DotNetCoreCLI@2
   displayName: 'dotnet build'
   inputs:
