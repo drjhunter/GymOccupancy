@@ -48,15 +48,15 @@ stages:
         publishWebProjects: True
         arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)/webapp'
         zipAfterPublish: True
-        
-      - task: DotNetCoreCLI@2
-        displayName: 'dotnet publish'
-        inputs:
-          projects: 'charting-webapi/charting-webapi.csproj'
-          command: publish
-          publishWebProjects: True
-          arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)/webapi'
-          zipAfterPublish: True
+
+    - task: DotNetCoreCLI@2
+      displayName: 'dotnet publish'
+      inputs:
+        projects: 'charting-webapi/charting-webapi.csproj'
+        command: publish
+        publishWebProjects: True
+        arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)/webapi'
+        zipAfterPublish: True
 
     - script: echo 'B'
     - task: PublishBuildArtifacts@1
