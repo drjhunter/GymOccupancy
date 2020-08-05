@@ -23,9 +23,8 @@ stages:
       displayName: 'dotnet restore'
       inputs:
         command: 'restore'
-        projects: projectFile
-        feedsToUse: 'config'
-        nugetConfigPath: nugetFile
+        projects: $(projectFile)
+        nugetConfigPath: $(nugetFile)
 
     - task: DotNetCoreCLI@2
       displayName: 'dotnet build'
