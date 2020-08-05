@@ -49,7 +49,7 @@ stages:
         projects: '**/charting-webapp.csproj'
         platform: '$(buildPlatform)'
         configuration: '$(buildConfiguration)'
-        arguments: '--no-restore --output ./charting-webapp'   
+        arguments: '--no-restore --output $(System.DefaultWorkingDirectory)/charting-webapp'   
 
     - task: DotNetCoreCLI@2
       displayName: 'dotnet publish webapp'
