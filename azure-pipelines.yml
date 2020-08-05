@@ -16,7 +16,7 @@ stages:
     pool:
       vmImage: 'vs2017-win2016'
     variables:
-      nugetFile: 'NuGet.config'
+      nugetFile: './NuGet.config'
       projectFile: 'charting-webapp/charting-webapp.csproj'
       System.Debug: true
       buildPlatform: 'Any CPU'
