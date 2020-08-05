@@ -10,10 +10,7 @@ trigger:
 
 stages:
 - stage: Build
-  variables:
-    System.Debug: true
-    buildPlatform: 'Any CPU'
-    buildConfiguration: 'Release'
+
   jobs:
   - job: BuildWebApp
     pool:
@@ -21,7 +18,9 @@ stages:
     variables:
       nugetFile: 'charting-webapp/NuGet.config'
       projectFile: 'charting-webapp/charting-webapp.csproj'
-
+      System.Debug: true
+      buildPlatform: 'Any CPU'
+      buildConfiguration: 'Release'
   
     steps:
     - task: DotNetCoreCLI@2
@@ -47,7 +46,7 @@ stages:
       displayName: 'dotnet build webapp'
       inputs:
         command: 'build'
-        projects: '**/charting-webap.csproj'
+        projects: '**/charting-webapp.csproj'
         platform: '$(buildPlatform)'
         configuration: '$(buildConfiguration)'
         arguments: '--no-restore --output ./charting-webapp'   
