@@ -43,7 +43,7 @@ stages:
     - task: DotNetCoreCLI@2
       displayName: 'dotnet publish'
       inputs:
-        projects: 'gymoccupancy.sln'
+        projects: 'gym-occupancy.sln'
         command: publish
         publishWebProjects: True
         arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
@@ -55,7 +55,7 @@ stages:
         PathtoPublish: '$(Build.ArtifactStagingDirectory)'
         ArtifactName: 'drop'
         
-        
+ 
 
 - stage: DeployWebApp
   jobs:
