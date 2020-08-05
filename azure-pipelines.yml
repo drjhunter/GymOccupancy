@@ -98,13 +98,13 @@ stages:
         WebAppName: 'chartin-webapp'
         packageForLinux: '$(System.DefaultWorkingDirectory)/**/charting-webapp.zip'
         AppSettings: '-PROJECT charting-webapp/charting-webapp.csproj -Apis:gymwebapiurl $(GymWebApiUrl)'
-        - task: AzureRmWebAppDeployment@4
-        displayName: 'Azure RM deploy'
-        inputs:
-          ConnectionType: 'AzureRM'
-          azureSubscription: 'Az400JulyHotmailAzureFreePassExpires190820'
-          appType: 'webApp'
-          WebAppName: 'chartin-webapi'
-          packageForLinux: '$(System.DefaultWorkingDirectory)/**/charting-webapi.zip'
-          AppSettings: '-PROJECT charting-webapi/charting-webapi.csproj'
+    - task: AzureRmWebAppDeployment@4
+      displayName: 'Azure RM deploy'
+      inputs:
+        ConnectionType: 'AzureRM'
+        azureSubscription: 'Az400JulyHotmailAzureFreePassExpires190820'
+        appType: 'webApp'
+        WebAppName: 'chartin-webapi'
+        packageForLinux: '$(System.DefaultWorkingDirectory)/**/charting-webapi.zip'
+        AppSettings: '-PROJECT charting-webapi/charting-webapi.csproj'
 
