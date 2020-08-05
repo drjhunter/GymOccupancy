@@ -7,6 +7,8 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Azure.Cosmos" Version="3.11.0" />
+    <PackageReference Include="charting-models" Version="1.0.0" />
+
   </ItemGroup>
 
 </Project>

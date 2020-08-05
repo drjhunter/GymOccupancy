@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Azure.Cosmos;
+using charting_models;
 
 namespace charting_webapi.Controllers
 {

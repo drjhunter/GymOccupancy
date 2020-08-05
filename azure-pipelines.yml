@@ -30,17 +30,13 @@ stages:
         projects: '**/*.csproj'
         nugetConfigPath: $(nugetFile)
 
-
-
-    # - task: DotNetCoreCLI@2
-    #   displayName: 'dotnet build webapi'
-    #   inputs:
-    #     command: 'build'
-    #     projects: '**/charting-webapi.csproj'
-    #     platform: '$(buildPlatform)'
-    #     configuration: '$(buildConfiguration)'
-    #     arguments: '--no-restore'
-    #     output:    
+    - task: DotNetCoreCLI@2
+      displayName: 'dotnet build webapi'
+      inputs:
+        command: 'build'
+        projects: '**/charting-webapi.csproj'
+        platform: '$(buildPlatform)'
+        configuration: '$(buildConfiguration)'
 
     - task: DotNetCoreCLI@2
       displayName: 'dotnet build webapp'
@@ -49,7 +45,6 @@ stages:
         projects: '**/charting-webapp.csproj'
         platform: '$(buildPlatform)'
         configuration: '$(buildConfiguration)'
-        
 
     - task: DotNetCoreCLI@2
       displayName: 'dotnet publish webapp'
