@@ -32,7 +32,7 @@ stages:
       inputs:
         command: 'build'
         projects: $(projectFile)
-        msbuildArgs: '/p:Verbosity=d /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(Build.ArtifactStagingDirectory)"'
+        msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(Build.ArtifactStagingDirectory)"'
         platform: '$(buildPlatform)'
         configuration: '$(buildConfiguration)'
 
@@ -67,7 +67,7 @@ stages:
         azureSubscription: 'Az400JulyHotmailAzureFreePassExpires190820'
         appType: 'webApp'
         WebAppName: 'chartin-webapp'
-        packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+        packageForLinux: '$(System.DefaultWorkingDirectory)/*.zip'
         AppSettings: '-PROJECT charting-webapp/charting-webapp.csproj'
 
 
