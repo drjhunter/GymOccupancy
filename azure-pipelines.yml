@@ -6,26 +6,30 @@
 trigger:
 - master
 
+
+
 stages:
-- stage: BuildWebApp
+- stage: Build
+  variables:
+    System.Debug: true
+    buildPlatform: 'Any CPU'
+    buildConfiguration: 'Release'
   jobs:
-  - job: Build
+  - job: BuildWebApp
     pool:
       vmImage: 'vs2017-win2016'
     variables:
       nugetFile: 'charting-webapp/NuGet.config'
       projectFile: 'charting-webapp/charting-webapp.csproj'
-      buildPlatform: 'Any CPU'
-      buildConfiguration: 'Release'
+
   
     steps:
     - task: DotNetCoreCLI@2
       displayName: 'dotnet restore'
       inputs:
         command: 'restore'
-        projects: $(projectFile)
+        projects: '**/*.csproj'
         nugetConfigPath: $(nugetFile)
-
 
     - task: DotNetCoreCLI@2
       displayName: 'dotnet build'
