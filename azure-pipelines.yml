@@ -20,7 +20,7 @@ stages:
   
     steps:
     - task: DotNetCoreCLI@2
-    displayName: 'dotnet restore'
+      displayName: 'dotnet restore'
       inputs:
         command: 'restore'
         projects: projectFile
@@ -49,7 +49,7 @@ stages:
         vmImage: 'vs2017-win2016'
       steps:
       - task: DownloadBuildArtifacts@0
-      displayName: 'download build artifact'
+        displayName: 'download build artifact'
         inputs:
           buildType: 'current'
           downloadType: 'single'
