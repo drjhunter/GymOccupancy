@@ -47,7 +47,7 @@ stages:
       displayName: 'dotnet build webapp'
       inputs:
         command: 'build'
-        projects: '**/charting-webapp.csproj'
+        projects: '**/charting-webap.csproj'
         platform: '$(buildPlatform)'
         configuration: '$(buildConfiguration)'
         arguments: '--no-restore --output ./charting-webapp'   
