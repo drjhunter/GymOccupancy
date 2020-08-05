@@ -43,7 +43,7 @@ stages:
         publishLocation: 'Container'
 
   - stage: DeployWebApp
-  jobs:
+    jobs:
     - job: Deploy
       pool: 
         vmImage: 'vs2017-win2016'
