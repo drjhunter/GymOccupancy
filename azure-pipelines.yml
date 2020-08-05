@@ -72,6 +72,6 @@ stages:
         appType: 'webApp'
         WebAppName: 'chartin-webapp'
         packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
-        AppSettings: '-PROJECT charting-webapp/charting-webapp.csproj'
+        AppSettings: '-PROJECT charting-webapp/charting-webapp.csproj Apis:gymwebapiurl $(GymWebApiUrl)'
 
 
