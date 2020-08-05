@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Configuration;
 using System.Net.Http;
-using charting_webapi;
 using Newtonsoft.Json;
 
 namespace charting_webapp.Pages
