@@ -40,7 +40,7 @@ stages:
         projects: '**/charting-webapi.csproj'
         platform: '$(buildPlatform)'
         configuration: '$(buildConfiguration)'
-        output: '$(Build.SourcesDirectory)/charting-webapi'
+        arguments: '--output $(Build.SourcesDirectory)/charting-webapi'   
 
     - task: DotNetCoreCLI@2
       displayName: 'dotnet build webapp'
@@ -49,8 +49,8 @@ stages:
         projects: '**/charting-webapp.csproj'
         platform: '$(buildPlatform)'
         configuration: '$(buildConfiguration)'
-        output: '$(Build.SourcesDirectory)/charting-webapp'   
-             
+        arguments: '--output $(Build.SourcesDirectory)/charting-webapp'   
+
     - task: DotNetCoreCLI@2
       displayName: 'dotnet publish webapp'
       inputs:
