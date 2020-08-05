@@ -56,6 +56,8 @@ stages:
   - job: Deploy
     pool: 
       vmImage: 'vs2017-win2016'
+    variables:
+      - group: GymOccupancyVG
     steps:
     - task: DownloadBuildArtifacts@0
       displayName: 'download build artifact'
