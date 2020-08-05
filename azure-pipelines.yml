@@ -32,16 +32,20 @@ stages:
       inputs:
         command: 'build'
         projects: $(projectFile)
-        msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactStagingDirectory)"'
+        msbuildArgs: '/p:Verbosity=d /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(Build.ArtifactStagingDirectory)"'
         platform: '$(buildPlatform)'
         configuration: '$(buildConfiguration)'
+
+    # - task: CopyFiles@2
+    #   inputs:
+    #     sourceFolder: $(Build.SourcesDirectory)
+    #     targetFolder: $(Build.ArtifactStagingDirectory)
 
     - task: PublishBuildArtifacts@1
       displayName: 'dotnet publish'
       inputs:
         PathtoPublish: '$(Build.ArtifactStagingDirectory)'
         ArtifactName: 'drop'
-        publishLocation: '$(System.ArtifactsDirectory)'
 
 - stage: DeployWebApp
   jobs:
