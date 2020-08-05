@@ -39,7 +39,8 @@ stages:
         msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(Build.ArtifactStagingDirectory)"'
         platform: '$(buildPlatform)'
         configuration: '$(buildConfiguration)'
-
+    - script: echo 'Working directory is $(System.DefaultWorkingDirectory)'
+    - script: echo 'Staging directory is $(Build.ArtifactStagingDirectory)'
     - task: DotNetCoreCLI@2
       displayName: 'dotnet publish'
       inputs:
