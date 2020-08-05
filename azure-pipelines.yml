@@ -36,16 +36,20 @@ stages:
         platform: '$(buildPlatform)'
         configuration: '$(buildConfiguration)'
 
-    - task: CopyFiles@2
-      inputs:
-        sourceFolder: $(Build.SourcesDirectory)
-        targetFolder: $(Build.ArtifactStagingDirectory)
+    - task: DotNetCoreCLI@2
+    inputs:
+      command: publish
+      publishWebProjects: True
+      arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+      zipAfterPublish: True
 
     - task: PublishBuildArtifacts@1
       displayName: 'dotnet publish'
       inputs:
         PathtoPublish: '$(Build.ArtifactStagingDirectory)'
         ArtifactName: 'drop'
+        
+        
 
 - stage: DeployWebApp
   jobs:
