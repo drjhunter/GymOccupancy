@@ -28,6 +28,7 @@ stages:
       inputs:
         command: 'restore'
         projects: '**/*.csproj'
+        feedsToUse: 'config'
         nugetConfigPath: $(nugetFile)
 
     - task: DotNetCoreCLI@2
