@@ -58,6 +58,8 @@ stages:
       vmImage: 'vs2017-win2016'
     variables:
       - group: GymOccupancyVG
+      - name: GymWebApiUrl
+        value: $[variables.GymWebApiUrl]
     steps:
     - task: DownloadBuildArtifacts@0
       displayName: 'download build artifact'
