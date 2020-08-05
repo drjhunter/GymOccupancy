@@ -32,17 +32,27 @@ stages:
         nugetConfigPath: $(nugetFile)
 
     - task: DotNetCoreCLI@2
-      displayName: 'dotnet build'
+      displayName: 'dotnet build webapp'
       inputs:
         command: 'build'
-        projects: 'gym-occupancy.sln'
+        projects: '**/charting-webapp.csproj'
         platform: '$(buildPlatform)'
         configuration: '$(buildConfiguration)'
+        output: '$(Build.SourcesDirectory)/charting-webapp'
+
+    - task: DotNetCoreCLI@2
+      displayName: 'dotnet build webapi'
+      inputs:
+        command: 'build'
+        projects: '**/charting-webapi.csproj'
+        platform: '$(buildPlatform)'
+        configuration: '$(buildConfiguration)'
+        output: '$(Build.SourcesDirectory)/charting-webapi'
 
     - task: DotNetCoreCLI@2
       displayName: 'dotnet publish webapp'
       inputs:
-        projects: '/**/charting-webapp/charting-webapp.csproj'
+        projects: '**/charting-webapp/charting-webapp.csproj'
         command: publish
         publishWebProjects: True
         arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
@@ -51,7 +61,7 @@ stages:
     - task: DotNetCoreCLI@2
       displayName: 'dotnet publish webapi'
       inputs:
-        projects: '/**/charting-webapi.csproj'
+        projects: '**/charting-webapi/charting-webapi.csproj'
         command: publish
         publishWebProjects: True
         arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
