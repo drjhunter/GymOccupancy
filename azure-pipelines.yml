@@ -32,20 +32,20 @@ stages:
         nugetConfigPath: $(nugetFile)
 
     - task: DotNetCoreCLI@2
-      displayName: 'dotnet build webapi'
+      displayName: 'dotnet build all'
       inputs:
         command: 'build'
-        projects: '**/charting-webapi.csproj'
+        projects: '**/*.csproj'
         platform: '$(buildPlatform)'
         configuration: '$(buildConfiguration)'
 
-    - task: DotNetCoreCLI@2
-      displayName: 'dotnet build webapp'
-      inputs:
-        command: 'build'
-        projects: '**/charting-webapp.csproj'
-        platform: '$(buildPlatform)'
-        configuration: '$(buildConfiguration)'
+    # - task: DotNetCoreCLI@2
+    #   displayName: 'dotnet build webapp'
+    #   inputs:
+    #     command: 'build'
+    #     projects: '**/charting-webapp.csproj'
+    #     platform: '$(buildPlatform)'
+    #     configuration: '$(buildConfiguration)'
 
     # - task: DotNetCoreCLI@2
     #   displayName: 'dotnet publish webapp'
