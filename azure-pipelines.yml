@@ -39,12 +39,21 @@ stages:
         platform: '$(buildPlatform)'
         configuration: '$(buildConfiguration)'
 
-    - task: ArchiveFiles@2
-      displayName: 'Archive files'
+    - task: DotNetCoreCLI@2
+      displayName: 'dotnet publish just function app!'
       inputs:
-        rootFolderOrFile: 'charting-functions'
-        includeRootFolder: false
-        archiveFile: '$(Build.ArtifactStagingDirectory)/OccupancyDataProcessorFn.zip'
+        command: publish
+        publishWebProjects: false
+        projects: '**/charting-functions.csproj'
+        arguments: '--configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)'
+        zipAfterPublish: True
+
+    # - task: ArchiveFiles@2
+    #   displayName: 'Archive files'
+    #   inputs:
+    #     rootFolderOrFile: 'charting-functions'
+    #     includeRootFolder: false
+    #     archiveFile: '$(Build.ArtifactStagingDirectory)/OccupancyDataProcessorFn.zip'
 
     - task: DotNetCoreCLI@2
       displayName: 'dotnet publish all web projects as separate zip'
