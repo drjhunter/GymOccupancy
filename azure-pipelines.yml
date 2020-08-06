@@ -93,7 +93,7 @@ stages:
         azureSubscription: Az400JulyHotmailAzureFreePassExpires190820
         appType: functionApp
         appName: gymoccupancy   
-        package: '$(System.DefaultWorkingDirectory)/**/OccupancyDataProcessorFn.zip'
+        package: '$(System.DefaultWorkingDirectory)/**/charting-functions.zip'
 
     - task: AzureRmWebAppDeployment@4
       displayName: 'Azure RM deploy'
