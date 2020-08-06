@@ -3,7 +3,8 @@ using System.IO;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Host;
 using Microsoft.Extensions.Logging;
-using NewtonSoft;
+using Newtonsoft.Json;
+using charting_models;
 
 namespace GymOccupancy.Function
 {
@@ -18,6 +19,7 @@ namespace GymOccupancy.Function
                 string responseAsString = reader.ReadToEnd();
                 cosmosDocument = JsonConvert.DeserializeObject<Occupancy>(responseAsString);
             }
+            cosmosDocument = new object();
         }
     }
 }
