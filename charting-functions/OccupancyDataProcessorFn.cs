@@ -3,6 +3,7 @@ using System.IO;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Host;
 using Microsoft.Extensions.Logging;
+using NewtonSoft;
 
 namespace GymOccupancy.Function
 {
@@ -11,13 +12,12 @@ namespace GymOccupancy.Function
         [FunctionName("OccupancyDataProcessorFn")]
         public static void Run([BlobTrigger("rawoccupancydata/{name}", Connection = "gymoccupancystor_STORAGE")] Stream myBlob, string name, out object cosmosDocument, ILogger log)
         {
-            log.LogInformation($"C# Blob trigger function Processed blob\n Name:{name} \n Size: {myBlob.Length} Bytes");
-            cosmosDocument = new
+            if (name.EndsWith(".json"))
             {
-                gymid = "000005",
-                date = "2020-08-06T14:45:30",
-                numberofpeople = 18
-            };
+                StreamReader reader = new StreamReader(myBlob);
+                string responseAsString = reader.ReadToEnd();
+                cosmosDocument = JsonConvert.DeserializeObject<Occupancy>(responseAsString);
+            }
         }
     }
 }
