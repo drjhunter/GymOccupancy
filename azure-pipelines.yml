@@ -70,6 +70,13 @@ stages:
       - group: GymOccupancyVG
     steps:
     - script: echo $(GymWebApiUrl)
+    steps:
+    - task: AzureFunctionApp@1
+      displayName: 'Azure Function App Deploy: gymoccupancy'
+      inputs:
+        azureSubscription: Az400JulyHotmailAzureFreePassExpires190820
+        appType: functionApp
+        appName: gymoccupancy
     - task: DownloadBuildArtifacts@0
       displayName: 'download build artifact'
       inputs:
