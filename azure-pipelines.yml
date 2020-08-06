@@ -70,7 +70,6 @@ stages:
       - group: GymOccupancyVG
     steps:
     - script: echo $(GymWebApiUrl)
-    steps:
     - task: AzureFunctionApp@1
       displayName: 'Azure Function App Deploy: gymoccupancy'
       inputs:
