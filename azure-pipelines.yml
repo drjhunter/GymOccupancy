@@ -39,23 +39,6 @@ stages:
         platform: '$(buildPlatform)'
         configuration: '$(buildConfiguration)'
 
-    # - task: DotNetCoreCLI@2
-    #   displayName: 'dotnet build webapp'
-    #   inputs:
-    #     command: 'build'
-    #     projects: '**/charting-webapp.csproj'
-    #     platform: '$(buildPlatform)'
-    #     configuration: '$(buildConfiguration)'
-
-    # - task: DotNetCoreCLI@2
-    #   displayName: 'dotnet publish webapp'
-    #   inputs:
-    #     projects: '**/charting-webapp/charting-webapp.csproj'
-    #     command: publish
-    #     publishWebProjects: True
-    #     arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
-    #     zipAfterPublish: True
-
     - task: DotNetCoreCLI@2
       displayName: 'dotnet publish all'
       inputs:
