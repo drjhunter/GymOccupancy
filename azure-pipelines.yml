@@ -117,7 +117,7 @@ stages:
         resourceGroupName: $(resourceGroupName)
         location: $(location)
         templateLocation: 'URL of the file'
-        csmFileLink: '$(System.DefaultWorkingDirectory)/**/function-app/azuredeploy.json'
+        csmFileLink: '$(System.DefaultWorkingDirectory)/env/function-app/azuredeploy.json'
         overrideParameters: '-appName $(appNameFn) -runtime dotnet -storageAccountType Standard_LRS'
         deploymentMode: 'Incremental'
 
