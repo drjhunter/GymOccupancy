@@ -116,7 +116,7 @@ stages:
         action: 'Create Or Update Resource Group'
         resourceGroupName: $(resourceGroupName)
         location: $(location)
-        templateLocation: 'URL of the file'
+        templateLocation: 'Linked artifact'
         csmFile: '$(System.DefaultWorkingDirectory)/env/function-app/azuredeploy.json'
         overrideParameters: '-appName $(appNameFn) -runtime dotnet -storageAccountType Standard_LRS'
         deploymentMode: 'Incremental'
