@@ -17,10 +17,16 @@ stages:
       vmImage: 'vs2017-win2016'
     variables:
       nugetFile: './NuGet.config'
-      projectFile: 'charting-webapp/charting-webapp.csproj'
-      System.Debug: true
+      System.Debug: false
       buildPlatform: 'Any CPU'
       buildConfiguration: 'Release'
+      azureSubscription: 'Az400JulyHotmailAzureFreePassExpires190820'
+      subscriptionId: 'bbcb1ada-eb77-417b-9831-57926cf2e274'
+      resourceGroupName: 'charting-rg'
+      location: 'UK South'
+      appNameFn: 'gymoccupancyfn'  
+      appNameWebApi: 'gymoccupancywebapi'   
+      appNameWebApp: 'gymoccupancywebapp'   
   
     steps:
     - task: DotNetCoreCLI@2
@@ -83,15 +89,15 @@ stages:
     - task: AzureResourceManagerTemplateDeployment@3
       inputs:
         deploymentScope: 'Resource Group'
-        azureResourceManagerConnection: 'Az400JulyHotmailAzureFreePassExpires190820'
-        subscriptionId: 'bbcb1ada-eb77-417b-9831-57926cf2e274'
+        azureResourceManagerConnection: $(azureResourceManagerConnection)
+        subscriptionId: $(subscriptionId)
         action: 'Create Or Update Resource Group'
-        resourceGroupName: 'charting-rg'
-        location: 'UK South'
+        resourceGroupName: $(resourceGroupName)
+        location: $(location)
         templateLocation: 'URL of the file'
         csmFileLink: 'https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-function-app-create-dynamic/azuredeploy.json'
         csmParametersFileLink: 'https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-function-app-create-dynamic/azuredeploy.parameters.json'
-        overrideParameters: '-appName gymoccupancy -runtime dotnet -storageAccountType Standard_LRS'
+        overrideParameters: '-appName $(appNameFn) -runtime dotnet -storageAccountType Standard_LRS'
         deploymentMode: 'Incremental'
 
     - task: AzureFunctionApp@1
