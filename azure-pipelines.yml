@@ -100,7 +100,7 @@ stages:
     - task: ExtractFiles@1
       inputs:
         archiveFilePatterns: '**/charting-env.zip'
-        destinationFolder: '$(System.DefaultWorkingDirectory)'
+        destinationFolder: '$(System.DefaultWorkingDirectory)/env'
         cleanDestinationFolder: true
 
     - task: PowerShell@2
