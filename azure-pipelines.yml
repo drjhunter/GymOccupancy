@@ -68,7 +68,7 @@ stages:
     - task: ArchiveFiles@2
       inputs:
         rootFolderOrFile: '$(Build.SourcesDirectory)/charting-env'
-        includeRootFolder: true
+        includeRootFolder: false
         archiveType: 'zip'
         archiveFile: '$(Build.ArtifactStagingDirectory)/charting-env.zip'
         replaceExistingArchive: true
@@ -100,7 +100,7 @@ stages:
     - task: ExtractFiles@1
       inputs:
         archiveFilePatterns: '**/charting-env.zip'
-        destinationFolder: 'charting-env'
+        destinationFolder: '$(System.DefaultWorkingDirectory)'
         cleanDestinationFolder: true
 
 
@@ -123,7 +123,7 @@ stages:
         azureResourceManagerConnection: Az400JulyHotmailAzureFreePassExpires190820
         appType: functionApp
         appName: gymoccupancy   
-        package: '$(System.DefaultWorkingDirectory)/**/charting-functions.zip'
+        package: '$(System.DefaultWorkingDirectory)/charting-env/function-app/charting-functions.zip'
         AppSettings: '-gymoccupancystor_STORAGE $(GymStorage) -AzureWebJobsStorage $(GymStorage) -CosmosDBConnection $(GymCosmos)'
 
     - task: AzureRmWebAppDeployment@4
