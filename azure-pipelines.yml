@@ -22,53 +22,46 @@ stages:
       buildPlatform: 'Any CPU'
       buildConfiguration: 'Release'
   
-    steps:
-    - task: DotNetCoreCLI@2
-      displayName: 'dotnet restore'
-      inputs:
-        command: 'restore'
-        projects: '**/*.csproj'
-        feedsToUse: 'config'
-        nugetConfigPath: $(nugetFile)
-
-    - task: DotNetCoreCLI@2
-      displayName: 'dotnet build all web projects'
-      inputs:
-        command: 'build'
-        projects: '**/*.csproj'
-        platform: '$(buildPlatform)'
-        configuration: '$(buildConfiguration)'
-
-    - task: DotNetCoreCLI@2
-      displayName: 'dotnet publish just function app!'
-      inputs:
-        command: publish
-        publishWebProjects: false
-        projects: '**/charting-functions.csproj'
-        arguments: '--configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)'
-        zipAfterPublish: True
-
-    # - task: ArchiveFiles@2
-    #   displayName: 'Archive files'
+    # steps:
+    # - task: DotNetCoreCLI@2
+    #   displayName: 'dotnet restore'
     #   inputs:
-    #     rootFolderOrFile: 'charting-functions'
-    #     includeRootFolder: false
-    #     archiveFile: '$(Build.ArtifactStagingDirectory)/OccupancyDataProcessorFn.zip'
+    #     command: 'restore'
+    #     projects: '**/*.csproj'
+    #     feedsToUse: 'config'
+    #     nugetConfigPath: $(nugetFile)
 
-    - task: DotNetCoreCLI@2
-      displayName: 'dotnet publish all web projects as separate zip'
-      inputs:
-        command: publish
-        publishWebProjects: True
-        arguments: '--configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)'
-        zipAfterPublish: True
+    # - task: DotNetCoreCLI@2
+    #   displayName: 'dotnet build all web projects'
+    #   inputs:
+    #     command: 'build'
+    #     projects: '**/*.csproj'
+    #     platform: '$(buildPlatform)'
+    #     configuration: '$(buildConfiguration)'
 
-    - script: echo 'B'
-    - task: PublishBuildArtifacts@1
-      displayName: 'publish artifacts'
-      inputs:
-        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-        ArtifactName: 'drop'
+    # - task: DotNetCoreCLI@2
+    #   displayName: 'dotnet publish just function app!'
+    #   inputs:
+    #     command: publish
+    #     publishWebProjects: false
+    #     projects: '**/charting-functions.csproj'
+    #     arguments: '--configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)'
+    #     zipAfterPublish: True
+
+    # - task: DotNetCoreCLI@2
+    #   displayName: 'dotnet publish all web projects as separate zip'
+    #   inputs:
+    #     command: publish
+    #     publishWebProjects: True
+    #     arguments: '--configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)'
+    #     zipAfterPublish: True
+
+    # - script: echo 'B'
+    # - task: PublishBuildArtifacts@1
+    #   displayName: 'publish artifacts'
+    #   inputs:
+    #     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    #     ArtifactName: 'drop'
 
 - stage: DeployWebApp
   jobs:
@@ -86,6 +79,20 @@ stages:
         downloadType: 'single'
         artifactName: 'drop'
         downloadPath: '$(System.DefaultWorkingDirectory)'
+
+    - task: AzureResourceManagerTemplateDeployment@3
+      inputs:
+        deploymentScope: 'Resource Group'
+        azureResourceManagerConnection: 'Az400JulyHotmailAzureFreePassExpires190820'
+        subscriptionId: 'bbcb1ada-eb77-417b-9831-57926cf2e274'
+        action: 'Create Or Update Resource Group'
+        resourceGroupName: 'charting-rg'
+        location: 'UK South'
+        templateLocation: 'URL of the file'
+        csmFileLink: 'https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-function-app-create-dynamic/azuredeploy.json'
+        csmParametersFileLink: 'https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-function-app-create-dynamic/azuredeploy.parameters.json'
+        overrideParameters: '-appName GymOccupancyFnApp2 -runtime dotnet -storageAccountType Standard_LRS'
+        deploymentMode: 'Incremental'
 
     - task: AzureFunctionApp@1
       displayName: 'Azure Function App Deploy: gymoccupancy'
