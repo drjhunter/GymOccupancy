@@ -75,7 +75,7 @@ stages:
       inputs:
         SourceFolder: '$(Build.SourcesDirectory)/charting-env'
         Contents: '**'
-        TargetFolder: '$(Build.artifactstagingdirectory)'
+        TargetFolder: 'Container'
         CleanTargetFolder: true
 
 
