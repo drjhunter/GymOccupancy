@@ -1,23 +1,15 @@
 {
     "version": "2.0",
-    "extensions": {
-        "cosmosDB": {
-            "connectionMode": "Gateway",
-            "protocol": "Https",
-            "leaseOptions": {
-                "leasePrefix": "prefix1"
-            }
-        },
-        "extensionBundle": {
-            "id": "Microsoft.Azure.Functions.ExtensionBundle",
-            "version": "[1.*, 2.0.0)"
-        },
-        "logging": {
-        "applicationInsights": {
-                "samplingExcludedTypes": "Request",
-                "samplingSettings": {
-                "isEnabled": true
-            }
+    "logging": {
+      "applicationInsights": {
+        "samplingExcludedTypes": "Request",
+        "samplingSettings": {
+          "isEnabled": true
         }
-    }
+      },
+      "extensionBundle": {
+        "id": "Microsoft.Azure.WebJobs.Extensions.CosmosDB",
+        "version": "3.0"
+      }
+  }
 }
