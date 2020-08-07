@@ -91,7 +91,7 @@ stages:
         templateLocation: 'URL of the file'
         csmFileLink: 'https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-function-app-create-dynamic/azuredeploy.json'
         csmParametersFileLink: 'https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-function-app-create-dynamic/azuredeploy.parameters.json'
-        overrideParameters: '-appName GymOccupancyFnApp2 -runtime dotnet -storageAccountType Standard_LRS'
+        overrideParameters: '-appName gymoccupancy -runtime dotnet -storageAccountType Standard_LRS'
         deploymentMode: 'Incremental'
 
     - task: AzureFunctionApp@1
