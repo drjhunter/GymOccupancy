@@ -97,6 +97,13 @@ stages:
         artifactName: 'drop'
         downloadPath: '$(System.DefaultWorkingDirectory)'
 
+    - task: ExtractFiles@1
+      inputs:
+        archiveFilePatterns: '**/charting-env.zip'
+        destinationFolder: 'charting-env'
+        cleanDestinationFolder: true
+
+
     - task: AzureResourceManagerTemplateDeployment@3
       inputs:
         deploymentScope: 'Resource Group'
