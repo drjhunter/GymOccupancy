@@ -124,7 +124,7 @@ stages:
     - task: AzureFunctionApp@1
       displayName: 'Azure Function App Deploy: gymoccupancy'
       inputs:
-        azureResourceManagerConnection: Az400JulyHotmailAzureFreePassExpires190820
+        azureSubscription: Az400JulyHotmailAzureFreePassExpires190820
         appType: functionApp
         appName: gymoccupancy   
         package: '$(System.DefaultWorkingDirectory)/charting-env/function-app/charting-functions.zip'
@@ -134,7 +134,7 @@ stages:
       displayName: 'Azure RM deploy'
       inputs:
         ConnectionType: 'AzureRM'
-        azureResourceManagerConnection: 'Az400JulyHotmailAzureFreePassExpires190820'
+        azureSubscription: 'Az400JulyHotmailAzureFreePassExpires190820'
         appType: 'webApp'
         WebAppName: 'chartin-webapp'
         packageForLinux: '$(System.DefaultWorkingDirectory)/**/charting-webapp.zip'
@@ -143,7 +143,7 @@ stages:
       displayName: 'Azure RM deploy'
       inputs:
         ConnectionType: 'AzureRM'
-        azureResourceManagerConnection: 'Az400JulyHotmailAzureFreePassExpires190820'
+        azureSubscription: 'Az400JulyHotmailAzureFreePassExpires190820'
         appType: 'webApp'
         WebAppName: 'chartin-webapi'
         packageForLinux: '$(System.DefaultWorkingDirectory)/**/charting-webapi.zip'
