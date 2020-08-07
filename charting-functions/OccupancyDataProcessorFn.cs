@@ -10,7 +10,7 @@ namespace GymOccupancy.Function
 {
     public static class OccupancyDataProcessorFn
     {
-        [FunctionName("OccupancyDataProcessorFnX")]
+        [FunctionName("OccupancyDataProcessorFn")]
         public static void Run(
             [BlobTrigger("rawoccupancydata/{name}", Connection = "gymoccupancystor_STORAGE")] Stream myBlob,
             string name,
