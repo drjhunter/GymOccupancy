@@ -19,7 +19,7 @@ stages:
 - stage: Build
 
   jobs:
-  - job: BuildWebApp
+  - job: Build
     pool:
       vmImage: 'vs2017-win2016'
     variables:
@@ -63,6 +63,12 @@ stages:
         arguments: '--configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)'
         zipAfterPublish: True
 
+    - task: PublishBuildArtifacts@1
+      displayName: 'publish artifacts'
+      inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        ArtifactName: 'drop'
+
     - script: echo 'B'
 
     - task: CopyFiles@2
@@ -72,13 +78,9 @@ stages:
         TargetFolder: '$(Build.artifactstagingdirectory)'
         CleanTargetFolder: true
 
-    - task: PublishBuildArtifacts@1
-      displayName: 'publish artifacts'
-      inputs:
-        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-        ArtifactName: 'drop'
 
-- stage: DeployWebApp
+
+- stage: Deploy
   jobs:
   - job: Deploy
     pool: 
