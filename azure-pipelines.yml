@@ -94,6 +94,7 @@ stages:
         appType: functionApp
         appName: gymoccupancy   
         package: '$(System.DefaultWorkingDirectory)/**/charting-functions.zip'
+        AppSettings: '-gymoccupancystor_STORAGE $(GymStorage) -AzureWebJobsStorage $(GymStorage) -CosmosDBConnection $(GymCosmos)'
 
     - task: AzureRmWebAppDeployment@4
       displayName: 'Azure RM deploy'
