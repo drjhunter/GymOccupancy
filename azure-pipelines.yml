@@ -67,9 +67,9 @@ stages:
 
     - task: CopyFiles@2
       inputs:
-        SourceFolder: '**/charting-env'
+        SourceFolder: '$(Build.SourcesDirectory)/charting-env'
         Contents: '**'
-        TargetFolder: '$(build.artifactstagingdirectory)'
+        TargetFolder: '$(Build.artifactstagingdirectory)'
         CleanTargetFolder: true
 
     - task: PublishBuildArtifacts@1
