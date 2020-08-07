@@ -7,7 +7,7 @@ trigger:
 - master
 
 variables:
-  azureSubscription: 'Az400JulyHotmailAzureFreePassExpires190820'
+  azureResourceManagerConnection: 'Az400JulyHotmailAzureFreePassExpires190820'
   subscriptionId: 'bbcb1ada-eb77-417b-9831-57926cf2e274'
   resourceGroupName: 'charting-rg'
   location: 'UK South'
@@ -112,7 +112,7 @@ stages:
     - task: AzureFunctionApp@1
       displayName: 'Azure Function App Deploy: gymoccupancy'
       inputs:
-        azureSubscription: Az400JulyHotmailAzureFreePassExpires190820
+        azureResourceManagerConnection: Az400JulyHotmailAzureFreePassExpires190820
         appType: functionApp
         appName: gymoccupancy   
         package: '$(System.DefaultWorkingDirectory)/**/charting-functions.zip'
@@ -122,7 +122,7 @@ stages:
       displayName: 'Azure RM deploy'
       inputs:
         ConnectionType: 'AzureRM'
-        azureSubscription: 'Az400JulyHotmailAzureFreePassExpires190820'
+        azureResourceManagerConnection: 'Az400JulyHotmailAzureFreePassExpires190820'
         appType: 'webApp'
         WebAppName: 'chartin-webapp'
         packageForLinux: '$(System.DefaultWorkingDirectory)/**/charting-webapp.zip'
@@ -131,7 +131,7 @@ stages:
       displayName: 'Azure RM deploy'
       inputs:
         ConnectionType: 'AzureRM'
-        azureSubscription: 'Az400JulyHotmailAzureFreePassExpires190820'
+        azureResourceManagerConnection: 'Az400JulyHotmailAzureFreePassExpires190820'
         appType: 'webApp'
         WebAppName: 'chartin-webapi'
         packageForLinux: '$(System.DefaultWorkingDirectory)/**/charting-webapi.zip'
