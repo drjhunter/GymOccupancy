@@ -63,22 +63,21 @@ stages:
         arguments: '--configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)'
         zipAfterPublish: True
 
+    - script: echo 'B'
+
+    - task: ArchiveFiles@2
+      inputs:
+        rootFolderOrFile: '$(Build.SourcesDirectory)/charting-env'
+        includeRootFolder: true
+        archiveType: 'zip'
+        archiveFile: '$(Build.ArtifactStagingDirectory)/charting-env.zip'
+        replaceExistingArchive: true
+
     - task: PublishBuildArtifacts@1
       displayName: 'publish artifacts'
       inputs:
         PathtoPublish: '$(Build.ArtifactStagingDirectory)'
         ArtifactName: 'drop'
-
-    - script: echo 'B'
-
-    - task: CopyFiles@2
-      inputs:
-        SourceFolder: '$(Build.SourcesDirectory)/charting-env'
-        Contents: '**'
-        TargetFolder: 'Container'
-        CleanTargetFolder: true
-
-
 
 - stage: Deploy
   jobs:
