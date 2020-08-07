@@ -20,7 +20,7 @@ namespace charting_webapi.Controllers
         public OccupancyController(ILogger<OccupancyController> logger, IConnectionFactory<Occupancy> connectionFactory)
         {
             _logger = logger;
-            _connection = connectionFactory.GetConnection<Occupancy>().Result;
+            _connection = connectionFactory.GetConnection().Result;
         }
 
         [HttpGet]

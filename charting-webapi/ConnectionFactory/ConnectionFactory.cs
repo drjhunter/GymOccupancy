@@ -5,7 +5,7 @@ using Microsoft.Extensions.Configuration;
 
 public interface IConnectionFactory<T>
 {
-    Task<IConnection<T>> GetConnection<T>();
+    Task<IConnection<T>> GetConnection();
 }
 
 public class ConnectionFactory<T>: IConnectionFactory<T>
@@ -20,7 +20,7 @@ public class ConnectionFactory<T>: IConnectionFactory<T>
         var key = configuration.GetValue<string>(_connectionType + ":Key");
     }
 
-    public async Task<IConnection<T>> GetConnection<T>()
+    public async Task<IConnection<T>> GetConnection()
     {
         if (_connectionType == "Cosmos")
         {
