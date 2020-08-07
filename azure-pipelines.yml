@@ -22,46 +22,46 @@ stages:
       buildPlatform: 'Any CPU'
       buildConfiguration: 'Release'
   
-    # steps:
-    # - task: DotNetCoreCLI@2
-    #   displayName: 'dotnet restore'
-    #   inputs:
-    #     command: 'restore'
-    #     projects: '**/*.csproj'
-    #     feedsToUse: 'config'
-    #     nugetConfigPath: $(nugetFile)
+    steps:
+    - task: DotNetCoreCLI@2
+      displayName: 'dotnet restore'
+      inputs:
+        command: 'restore'
+        projects: '**/*.csproj'
+        feedsToUse: 'config'
+        nugetConfigPath: $(nugetFile)
 
-    # - task: DotNetCoreCLI@2
-    #   displayName: 'dotnet build all web projects'
-    #   inputs:
-    #     command: 'build'
-    #     projects: '**/*.csproj'
-    #     platform: '$(buildPlatform)'
-    #     configuration: '$(buildConfiguration)'
+    - task: DotNetCoreCLI@2
+      displayName: 'dotnet build all web projects'
+      inputs:
+        command: 'build'
+        projects: '**/*.csproj'
+        platform: '$(buildPlatform)'
+        configuration: '$(buildConfiguration)'
 
-    # - task: DotNetCoreCLI@2
-    #   displayName: 'dotnet publish just function app!'
-    #   inputs:
-    #     command: publish
-    #     publishWebProjects: false
-    #     projects: '**/charting-functions.csproj'
-    #     arguments: '--configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)'
-    #     zipAfterPublish: True
+    - task: DotNetCoreCLI@2
+      displayName: 'dotnet publish just function app!'
+      inputs:
+        command: publish
+        publishWebProjects: false
+        projects: '**/charting-functions.csproj'
+        arguments: '--configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)'
+        zipAfterPublish: True
 
-    # - task: DotNetCoreCLI@2
-    #   displayName: 'dotnet publish all web projects as separate zip'
-    #   inputs:
-    #     command: publish
-    #     publishWebProjects: True
-    #     arguments: '--configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)'
-    #     zipAfterPublish: True
+    - task: DotNetCoreCLI@2
+      displayName: 'dotnet publish all web projects as separate zip'
+      inputs:
+        command: publish
+        publishWebProjects: True
+        arguments: '--configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)'
+        zipAfterPublish: True
 
-    # - script: echo 'B'
-    # - task: PublishBuildArtifacts@1
-    #   displayName: 'publish artifacts'
-    #   inputs:
-    #     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    #     ArtifactName: 'drop'
+    - script: echo 'B'
+    - task: PublishBuildArtifacts@1
+      displayName: 'publish artifacts'
+      inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        ArtifactName: 'drop'
 
 - stage: DeployWebApp
   jobs:
