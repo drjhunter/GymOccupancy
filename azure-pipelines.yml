@@ -127,7 +127,7 @@ stages:
         azureSubscription: Az400JulyHotmailAzureFreePassExpires190820
         appType: functionApp
         appName: gymoccupancyfn   
-        package: '$(System.DefaultWorkingDirectory)/charting-functions/function-app/charting-functions.zip'
+        package: '$(System.DefaultWorkingDirectory)/**/charting-functions.zip'
         AppSettings: '-gymoccupancystor_STORAGE $(GymStorage) -AzureWebJobsStorage $(GymStorage) -CosmosDBConnection $(GymCosmos)'
 
     - task: AzureRmWebAppDeployment@4
