@@ -7,13 +7,7 @@ trigger:
 - master
 
 variables:
-  azureResourceManagerConnection: 'Az400JulyHotmailAzureFreePassExpires190820'
-  subscriptionId: 'bbcb1ada-eb77-417b-9831-57926cf2e274'
-  resourceGroupName: 'charting-rg'
-  location: 'UK South'
-  appNameFn: 'gymoccupancyfn'  
-  appNameWebApi: 'gymoccupancywebapi'   
-  appNameWebApp: 'gymoccupancywebapp'  
+
 
 stages:
 - stage: Build
