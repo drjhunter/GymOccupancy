@@ -116,31 +116,31 @@ stages:
         overrideParameters: '-appName $(appNameFn) -runtime dotnet -storageAccountType Standard_LRS'
         deploymentMode: 'Incremental'
 
-    - task: AzureFunctionApp@1
-      displayName: 'Azure Function App Deploy: gymoccupancy'
-      inputs:
-        azureSubscription: 'VisualStudio'
-        appType: functionApp
-        appName: gymoccupancyfn   
-        package: '$(System.DefaultWorkingDirectory)/**/charting-functions.zip'
-        AppSettings: '-gymoccupancystor_STORAGE $(GymStorage) -AzureWebJobsStorage $(GymStorage) -CosmosDBConnection $(GymCosmos)'
+    # - task: AzureFunctionApp@1
+    #   displayName: 'Azure Function App Deploy: gymoccupancy'
+    #   inputs:
+    #     azureSubscription: 'VisualStudio'
+    #     appType: functionApp
+    #     appName: gymoccupancyfn   
+    #     package: '$(System.DefaultWorkingDirectory)/**/charting-functions.zip'
+    #     AppSettings: '-gymoccupancystor_STORAGE $(GymStorage) -AzureWebJobsStorage $(GymStorage) -CosmosDBConnection $(GymCosmos)'
 
-    - task: AzureRmWebAppDeployment@4
-      displayName: 'Azure RM deploy'
-      inputs:
-        ConnectionType: 'AzureRM'
-        azureSubscription: 'VisualStudio'
-        appType: 'webApp'
-        WebAppName: 'chartin-webapp'
-        packageForLinux: '$(System.DefaultWorkingDirectory)/**/charting-webapp.zip'
-        AppSettings: '-PROJECT charting-webapp/charting-webapp.csproj -Apis:gymwebapiurl $(GymWebApiUrl)'
-    - task: AzureRmWebAppDeployment@4
-      displayName: 'Azure RM deploy'
-      inputs:
-        ConnectionType: 'AzureRM'
-        azureSubscription: 'VisualStudio'
-        appType: 'webApp'
-        WebAppName: 'chartin-webapi'
-        packageForLinux: '$(System.DefaultWorkingDirectory)/**/charting-webapi.zip'
-        AppSettings: '-PROJECT charting-webapi/charting-webapi.csproj'
+    # - task: AzureRmWebAppDeployment@4
+    #   displayName: 'Azure RM deploy'
+    #   inputs:
+    #     ConnectionType: 'AzureRM'
+    #     azureSubscription: 'VisualStudio'
+    #     appType: 'webApp'
+    #     WebAppName: 'chartin-webapp'
+    #     packageForLinux: '$(System.DefaultWorkingDirectory)/**/charting-webapp.zip'
+    #     AppSettings: '-PROJECT charting-webapp/charting-webapp.csproj -Apis:gymwebapiurl $(GymWebApiUrl)'
+    # - task: AzureRmWebAppDeployment@4
+    #   displayName: 'Azure RM deploy'
+    #   inputs:
+    #     ConnectionType: 'AzureRM'
+    #     azureSubscription: 'VisualStudio'
+    #     appType: 'webApp'
+    #     WebAppName: 'chartin-webapi'
+    #     packageForLinux: '$(System.DefaultWorkingDirectory)/**/charting-webapi.zip'
+    #     AppSettings: '-PROJECT charting-webapi/charting-webapi.csproj'
 
